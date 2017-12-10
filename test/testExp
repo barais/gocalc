@@ -3,6 +3,8 @@ TOKEN=`./login |jq  -c '.token'`
 curl -H "Content-Type: application/json" -X POST -d "{ \"token\":$TOKEN,  \"expression\": \"(1+1.1)*2\" }" http://localhost:8080/compute |jq -c '.result'
 curl -H "Content-Type: application/json" -X POST -d "{ \"token\":$TOKEN,  \"expression\": \"(1+1.1)*2==4.2\" }" http://localhost:8080/compute |jq -c '.result'
 curl -H "Content-Type: application/json" -X POST -d "{ \"token\":$TOKEN,  \"expression\": \"0.1+0.2+0.3==0.3+0.2+0.1\" }" http://localhost:8080/compute |jq -c '.result'
+curl -H "Content-Type: application/json" -X POST -d "{ \"token\":$TOKEN,  \"expression\": \"(0.1+0.2+0.3)*10000000000000000.0-6000000000000000.0 != (0.3+0.2+0.1)*10000000000000000.0-6000000000000000.0\" }" http://localhost:8080/compute |jq -c '.result'
+
 
 
 

@@ -95,8 +95,12 @@ func (a *App) compute(w http.ResponseWriter, r *http.Request) {
 	valuev := a.ttlMap.Get(req.Token)
 	if (valuev == "valid"){
 		// Split expression
-		if strings.Contains(req.Expression,"=="){
-			s := strings.Split(req.Expression,"==")
+		if strings.Contains(req.Expression,"==")|| strings.Contains(req.Expression,"!=") {
+			var s []string
+			if (strings.Contains(req.Expression,"==")) {s= strings.Split(req.Expression,"==")
+			}else{
+				s=strings.Split(req.Expression,"!=")
+			}
 			exp1, exp2 := s[0], s[1]
 			exp1 = strings.Replace(exp1, " ", "", -1)
 			exp2 = strings.Replace(exp2, " ", "", -1)
@@ -111,9 +115,9 @@ func (a *App) compute(w http.ResponseWriter, r *http.Request) {
 				return;
 			}
 			if (mgl64.FloatEqual(res1,res2)){
-				respondWithJSON(w, http.StatusOK, boolresult{true})				
+				respondWithJSON(w, http.StatusOK, boolresult{strings.Contains(req.Expression,"==")})				
 			}else{
-				respondWithJSON(w, http.StatusOK, boolresult{false})				
+				respondWithJSON(w, http.StatusOK, boolresult{strings.Contains(req.Expression,"!=")})				
 			}			
 		}else{ 
 			exp1 := req.Expression
