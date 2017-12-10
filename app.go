@@ -125,7 +125,7 @@ func (a *App) compute(w http.ResponseWriter, r *http.Request) {
 		}else{ 
 			exp1 := req.Expression
 			exp1 = strings.Replace(exp1, " ", "", -1)
-			fmt.Println(exp1)
+	//		fmt.Println(exp1)
 			res1, err1 := compute.Evaluate(exp1)
 			if err1 != nil {
 				respondWithJSON(w, http.StatusBadRequest, fault{fmt.Sprint("Error: " + err1.Error())})
