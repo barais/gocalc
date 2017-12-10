@@ -1,7 +1,5 @@
 // app.go
-
 package main
-
 import (
 	"encoding/json"
 	"fmt"
@@ -13,11 +11,8 @@ import (
 	"github.com/twinj/uuid"
 	"github.com/gorilla/mux"
 	"github.com/alfredxing/calc/compute"
+	"github.com/leprosus/golang-ttl-map"
 )
-
-import "github.com/leprosus/golang-ttl-map"
-
-
 
 type user struct {
 	Login string `json:"login"`
@@ -37,20 +32,16 @@ type computerequest struct {
 	Expression string `json:"expression"`	
 }
 
-
 type fault struct {
 	Fault string `json:"fault"`
 }
 
-
 type App struct {
 	Router *mux.Router
-//	ValidToken string
 	ttlMap ttl_map.Heap
 }
 
 func (a *App) Initialize() {
-
 	a.Router = mux.NewRouter()
 	a.initializeRoutes()
 	a.ttlMap = ttl_map.New("token.tsv")
@@ -64,9 +55,6 @@ func (a *App) Run(addr string) {
 func (a *App) initializeRoutes() {
 	a.Router.HandleFunc("/login", a.login).Methods("POST")
 	a.Router.HandleFunc("/compute", a.compute).Methods("POST")
-//	a.Router.HandleFunc("/user/{id:[0-9]+}", a.getUser).Methods("GET")
-//	a.Router.HandleFunc("/user/{id:[0-9]+}", a.updateUser).Methods("PUT")
-//	a.Router.HandleFunc("/user/{id:[0-9]+}", a.deleteUser).Methods("DELETE")
 }
 
 func (a *App) login(w http.ResponseWriter, r *http.Request) {
@@ -145,7 +133,6 @@ func respondWithError(w http.ResponseWriter, code int, message string) {
 
 func respondWithJSON(w http.ResponseWriter, code int, payload interface{}) {
 	response, _ := json.Marshal(payload)
-
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(code)
 	w.Write(response)
