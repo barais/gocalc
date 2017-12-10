@@ -11,3 +11,16 @@ run:
 	./calc
 rundocker:
 	docker run -p8080:8080 barais/calc
+
+rununikdaemon:
+	unik daemon --debug
+rununiktarget:
+	unik target --host localhost
+builduniimage:
+	unik build --name myImage --path ./ --base rump --language go --provider virtualbox
+unistartinstance:
+	unik run --instanceName myInstance --imageName myImage
+unistopinstance:
+	unik stop --instance --instanceName
+unirestartinstance:
+	unik stop --instance --instanceName

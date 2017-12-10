@@ -1,0 +1,46 @@
+{
+	"ImportPath": "github.com/barais/gocalc",
+	"GoVersion": "go1.9",
+	"GodepVersion": "v79",
+	"Deps": [
+		{
+			"ImportPath": "github.com/alfredxing/calc/compute",
+			"Rev": "0b39213bb782b6cf0efe522bad07e5ace546ed79"
+		},
+		{
+			"ImportPath": "github.com/alfredxing/calc/constants",
+			"Rev": "0b39213bb782b6cf0efe522bad07e5ace546ed79"
+		},
+		{
+			"ImportPath": "github.com/alfredxing/calc/operators",
+			"Rev": "0b39213bb782b6cf0efe522bad07e5ace546ed79"
+		},
+		{
+			"ImportPath": "github.com/alfredxing/calc/operators/functions",
+			"Rev": "0b39213bb782b6cf0efe522bad07e5ace546ed79"
+		},
+		{
+			"ImportPath": "github.com/go-gl/mathgl/mgl64",
+			"Comment": "Go1.2.2-119-g4c3fc6b",
+			"Rev": "4c3fc6b4bf30179013667e5d0b926e024d9a13c1"
+		},
+		{
+			"ImportPath": "github.com/gorilla/mux",
+			"Comment": "v1.6.0-5-g7904d2e",
+			"Rev": "7904d2e42e7ebbdb4a6eb3e57eb201b11df25c57"
+		},
+		{
+			"ImportPath": "github.com/leprosus/golang-ttl-map",
+			"Rev": "d113dd37b11ac98d94ab90938f3616e3d311d52c"
+		},
+		{
+			"ImportPath": "github.com/twinj/uuid",
+			"Comment": "v0.1.0",
+			"Rev": "7bbe408d339787c56ec15568c947c0959db1b275"
+		},
+		{
+			"ImportPath": "golang.org/x/image/math/f64",
+			"Rev": "e5db4c466346ada62f27934dab20e4b6f6bda285"
+		}
+	]
+}
