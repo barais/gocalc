@@ -23,9 +23,14 @@ type token struct {
 	Token string `json:"token"`
 }
 
-type result struct{
-	Result string `json:"result"`	
+type boolresult struct{
+	Result bool `json:"result"`	
 }
+
+type floatresult struct{
+	Result float64 `json:"result"`	
+}
+
 
 type computerequest struct {
 	Token string `json:"token"`
@@ -106,9 +111,9 @@ func (a *App) compute(w http.ResponseWriter, r *http.Request) {
 				return;
 			}
 			if (mgl64.FloatEqual(res1,res2)){
-				respondWithJSON(w, http.StatusOK, result{"True"})				
+				respondWithJSON(w, http.StatusOK, boolresult{true})				
 			}else{
-				respondWithJSON(w, http.StatusOK, result{"False"})				
+				respondWithJSON(w, http.StatusOK, boolresult{false})				
 			}			
 		}else{ 
 			exp1 := req.Expression
@@ -119,7 +124,8 @@ func (a *App) compute(w http.ResponseWriter, r *http.Request) {
 				respondWithJSON(w, http.StatusBadRequest, fault{fmt.Sprint("Error: " + err1.Error())})
 				return;
 			}
-			respondWithJSON(w, http.StatusOK, result{fmt.Sprint(strconv.FormatFloat(res1, 'G', -1, 64))})							
+			resfinal, _ :=strconv.ParseFloat(strconv.FormatFloat(res1, 'G', -1, 64),64)
+			respondWithJSON(w, http.StatusOK, floatresult{resfinal})							
 		}
 	}else{
 		respondWithJSON(w, http.StatusBadRequest, fault{"User not authentified"})
